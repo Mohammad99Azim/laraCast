@@ -1,0 +1,13 @@
+body{
+    background-color: rgb(241, 156, 156);
+
+}
+article{
+    margin: auto;
+    max-width: 800px;
+}
+
+article + article{
+    border-top: 1px solid rgb(73, 73, 73);
+    margin-top: 20px;
+}
