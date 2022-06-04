@@ -13,4 +13,4 @@ class Category extends Model
        return $this->hasMany(Post::class);
     }
 }
-echo "# laraCast" >> README.md
+
