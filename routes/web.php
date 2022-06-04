@@ -1,7 +1,7 @@
 <?php
 
+namespace App\Models;
 use Illuminate\Support\Facades\Route;
-use App\Models\Post;
 
 
 /*
@@ -16,15 +16,34 @@ use App\Models\Post;
 */
 
 Route::get('/', function () {
-
     return view('posts', [
-        'allPosts' => Post::all()
+        'allPosts' => Post::with('category')->get()
+
     ]);
 });
 
 
-Route::get('post/{postNum}', function ($slug) {
+
+Route::get('post/{post}', function (Post $post) {
     return view('post', [
-        'content' => Post::findOrFail($slug)
+        'content' => $post
     ]);
 });
+
+Route::get('/categories/{category:slug}', function (Category $category) {
+    return view('posts', [
+        'allPosts' => $category->posts
+    ]);
+});
+
+
+
+
+
+//Route::get('post/{post}', function ( $id) {
+//    return view('post', [
+//        'content' => Post::findOrFail($id)
+//    ]);
+//});
+//
+//
