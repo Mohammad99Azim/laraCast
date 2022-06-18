@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+
 use Illuminate\Support\Facades\Route;
 
 
@@ -17,12 +18,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('posts', [
-        'allPosts' => Post::with('category')->get()
-
+        'allPosts' => Post::with('user','category')->get()
     ]);
 });
-
-
 
 Route::get('post/{post}', function (Post $post) {
     return view('post', [
