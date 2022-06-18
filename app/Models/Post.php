@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+
+    protected $with = ['category', 'author'];  // to prevent the N+1 problem in querys
+
     use HasFactory;
     protected $fillable = ['title', 'category_id', 'slug', 'excerpt', 'body'];
 
@@ -16,9 +19,9 @@ class Post extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function user()
+    public function author()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     //    public function getRouteKeyName()

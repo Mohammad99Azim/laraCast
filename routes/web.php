@@ -18,11 +18,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('posts', [
-        'allPosts' => Post::with('user','category')->get()
+        'allPosts' => Post::latest('created_at')->get()  // ->with(['author', 'category'])->get()   prevent the N+1
     ]);
 });
 
-Route::get('post/{post}', function (Post $post) {
+Route::get('post/{post:slug}', function (Post $post) {
     return view('post', [
         'content' => $post
     ]);
@@ -30,7 +30,13 @@ Route::get('post/{post}', function (Post $post) {
 
 Route::get('/categories/{category:slug}', function (Category $category) {
     return view('posts', [
-        'allPosts' => $category->posts
+        'allPosts' => $category->posts    // ->load(['author', 'category']) prevent the N+1
+    ]);
+});
+
+Route::get('/author/{author:username}', function (User $author) {
+    return view('posts', [
+        'allPosts' => $author->post  // ->load(['author', 'category'])  prevent the N+1
     ]);
 });
 
