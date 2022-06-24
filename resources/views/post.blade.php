@@ -1,4 +1,25 @@
-@extends('layout')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{-- @extends('./components/layout')
 @section('content')
     <article>
 
@@ -9,4 +30,4 @@
             {{ $content->body }}
         </p>
     </article>
-@endsection
+@endsection --}}
