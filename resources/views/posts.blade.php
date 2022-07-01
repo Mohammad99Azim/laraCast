@@ -6,7 +6,7 @@
         @if ($allPosts)
             <x-main-post-card :post="$allPosts[0]" />
             @if ($allPosts->count() > 1)
-                <x-grid-posts-handle :posts="$allPosts->skip(1)"/>
+                <x-grid-posts-handle :posts="$allPosts->skip(1)" />
             @endif
             <div class="lg:grid lg:grid-cols-3">
 
