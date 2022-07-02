@@ -36,7 +36,7 @@ Route::get('/categories/{category:slug}', function (Category $category) {
 
 Route::get('/author/{author:username}', function (User $author) {
     return view('posts', [
-        'allPosts' => $author->post  // ->load(['author', 'category'])  prevent the N+1
+        'allPosts' => $author->post     //->load(['author', 'category']) // prevent the N+1
     ]);
 });
 
